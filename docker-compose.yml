@@ -1,0 +1,74 @@
+# version: "3.9"
+
+# services:
+#   mongo:
+#     image: mongo
+#     ports:
+#       - "27017:27017"
+
+#   redis:
+#     image: redis
+#     ports:
+#       - "6379:6379"
+
+#   api:
+#     build: ./api
+#     ports:
+#       - "3000:3000"
+#     depends_on:
+#       - mongo
+#       - redis
+#     environment:
+#       - MONGO_URI=mongodb://mongo:27017/codearena
+#       - REDIS_HOST=redis
+
+#   worker:
+#     build: ./worker
+#     depends_on:
+#       - mongo
+#       - redis
+#     environment:
+#       - MONGO_URI=mongodb://mongo:27017/codearena
+#       - REDIS_HOST=redis
+#     volumes:
+#       - /var/run/docker.sock:/var/run/docker.sock
+#       - ./temp:/app/temp # FIX: bind mount real host path, not named volume
+
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+
+  api:
+    build: ./api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+      - redis
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/codearena
+      - REDIS_HOST=redis
+
+  worker:
+    build: ./worker
+    depends_on:
+      - mongo
+      - redis
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/codearena
+      - REDIS_HOST=redis
+      - HOST_TEMP_PATH=C:/Users/KIIT0001/codearena/temp
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./temp:/app/temp # bind mount so spawned containers can see files
+
+volumes: {}

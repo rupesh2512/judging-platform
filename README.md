@@ -187,10 +187,6 @@ worker:
 3. Add tests
 4. Submit PR
 
-## 📄 License
-
-MIT License - see [LICENSE](LICENSE) file.
-
 ## 🙌 Acknowledgments
 
 Built with ❤️ using:

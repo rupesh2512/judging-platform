@@ -136,20 +136,7 @@ Environment variables (set in `docker-compose.yml`):
    # ➜ "CodeArena API Running"
    ```
 
-2. **Full Flow Test:**
 
-   ```bash
-   # Submit
-   SUB_ID=$(curl -s -X POST http://localhost:3000/submit \
-     -H "Content-Type: application/json" \
-     -d '{"code":"console.log(42)","language":"javascript"}' | jq -r .submissionId)
-
-   # Poll until done
-   while true; do
-     curl -s http://localhost:3000/submission/$SUB_ID | jq .
-     sleep 2
-   done
-   ```
 
 ## 🔒 Security Features
 
